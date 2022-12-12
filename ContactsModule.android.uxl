@@ -1,0 +1,7 @@
+<Extensions Backend="CPlusPlus" Condition="ANDROID">
+
+    <ProcessFile JavaFile="com/fuse/ContactsModule.java" />
+
+    <Require AndroidManifest.Permission="android.permission.WRITE_CONTACTS" />
+
+</Extensions>

@@ -1,0 +1,10 @@
+<ButtonBase ux:Class="Button">
+    <Rectangle Layer="Background" CornerRadius="5" Color="#2176AE" ux:Name="button" />
+    <Text Value="{Property this.Text}" Color="#fff" Alignment="Center" />
+    <WhilePressed>
+        <Change button.Color="#57B8FF" />
+    </WhilePressed>
+    <WhileDisabled>
+        <Change button.Color="#CCC" />
+    </WhileDisabled>
+</ButtonBase>

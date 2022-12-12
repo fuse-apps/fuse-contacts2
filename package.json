@@ -1,0 +1,12 @@
+{
+  "name": "fuse-contacts2",
+  "private": true,
+  "devDependencies": {
+    "fuse-sdk": "^2.5.0"
+  },
+  "scripts": {
+    "android": "uno build android --run",
+    "ios-sim": "uno build ios-sim --run",
+    "clean": "uno clean"
+  }
+}
