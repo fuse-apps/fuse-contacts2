@@ -4,12 +4,12 @@
 
         <StackPanel Dock="Top">
             <Panel Color="#2CAE3F" Height="45">
-                <Text Value="Add contact" FontSize="22" Alignment="Center" TextColor="#fff"/>
+                <Text Value="Contacts example" FontSize="22" Alignment="Center" TextColor="#fff"/>
             </Panel>
         </StackPanel>
 
         <Panel Height="15%" Color="#0008" Alignment="Bottom">
-            <Text Value="This will add a new contact on your device" Margin="20" TextColor="#fff" Alignment="Center" TextWrapping="Wrap" />
+            <Text Value="This will add a new contact named 'Fuse X' on your device" Margin="20" TextColor="#fff" Alignment="Center" TextWrapping="Wrap" />
         </Panel>
 
         <Grid RowCount="4">
@@ -17,6 +17,8 @@
             </Path>
 
             <Button Text="Add contact" Tapped="{addContact}" Margin="20" Height="60" />
+
+            <Text Color="#000" Alignment="Center" Value="{message}" />
         </Grid>
     </ClientPanel>
 </App>

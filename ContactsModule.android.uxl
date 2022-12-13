@@ -4,4 +4,6 @@
 
     <Require AndroidManifest.Permission="android.permission.WRITE_CONTACTS" />
 
+    <Require Activity.OnPermissionsResult="com.fuse.ContactsModule.onRequestPermissionsResult(requestCode, permissions, grantResults);" />
+
 </Extensions>

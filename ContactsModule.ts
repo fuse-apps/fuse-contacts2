@@ -1,6 +1,13 @@
 /** Native contacts module - implemented by ContactsModule.uno */
 declare module "FuseJS/Contacts" {
 
+    /** Returns whether permissions are granted */
+    function hasPermission(): boolean
+
+    /** Requests permissions from the user */
+    function requestPermission(): Promise<boolean>
+
+    /** Adds a contact on your device */
     function addContact(contact: Contact)
 
     interface EmailAddress {

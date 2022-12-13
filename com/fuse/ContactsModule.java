@@ -1,9 +1,11 @@
 package com.fuse;
 
+import android.Manifest;
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
@@ -11,6 +13,11 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.Note;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import com.uno.UnoObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,8 +27,42 @@ import java.util.ArrayList;
 
 public class ContactsModule {
 
-    public static boolean addContact(JSONObject contact) throws JSONException {
+    static final int WRITE_CONTACTS_REQUEST_CODE = 131525;
 
+    static UnoObject _permissionPromise;
+
+    public static boolean hasPermission() {
+        Context context = Activity.getRootActivity().getApplicationContext();
+        return ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_CONTACTS) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    public static void requestPermission(UnoObject promise) {
+        if (hasPermission()) {
+            com.foreign.ExternedBlockHost.resolveContactsModulePromise(promise, true);
+            return;
+        }
+
+        if (_permissionPromise != null) {
+            com.foreign.ExternedBlockHost.rejectContactsModulePromise(_permissionPromise, "Aborted");
+            _permissionPromise = null;
+        }
+
+        _permissionPromise = promise;
+        ActivityCompat.requestPermissions(Activity.getRootActivity(), new String[] { Manifest.permission.WRITE_CONTACTS }, WRITE_CONTACTS_REQUEST_CODE);
+    }
+
+    public static void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == WRITE_CONTACTS_REQUEST_CODE) {
+            boolean result = grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED;
+
+            if (_permissionPromise != null) {
+                com.foreign.ExternedBlockHost.resolveContactsModulePromise(_permissionPromise, result);
+                _permissionPromise = null;
+            }
+        }
+    }
+
+    public static boolean addContact(JSONObject contact) throws JSONException {
         String givenName = contact.has("givenName") ? contact.getString("givenName") : null;
         String middleName = contact.has("middleName") ? contact.getString("middleName") : null;
         String familyName = contact.has("familyName") ? contact.getString("familyName") : null;
