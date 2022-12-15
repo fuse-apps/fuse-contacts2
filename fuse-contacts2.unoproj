@@ -1,4 +1,9 @@
 {
+  "iOS": {
+    "PList": {
+      "NSContactsUsageDescription": "This app would like to access your contacts",
+    }
+  },
   "Packages": [
     "Fuse",
     "FuseJS"

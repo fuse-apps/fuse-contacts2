@@ -1,0 +1,6 @@
+<Extensions Backend="CPlusPlus" Condition="IOS">
+
+    <CopyFile HeaderFile="ContactsModule/ContactsModule.h" />
+    <CopyFile SourceFile="ContactsModule/ContactsModule.m" />
+
+</Extensions>

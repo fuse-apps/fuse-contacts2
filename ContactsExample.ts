@@ -7,14 +7,17 @@ export default class ContactsExample {
         Contacts.requestPermission()
             .then(hasPermission => {
                 if (hasPermission) {
-                    Contacts.addContact({
+                    if (Contacts.addContact({
                         givenName: "Fuse X",
                         phoneNumbers: [{
                             label: "home",
                             number: "+1234567890"
                         }]
-                    })
-                    this.message = "Contact added!"
+                    })) {
+                        this.message = "Contact added!"
+                    } else {
+                        this.message = "Error occured"
+                    }
                 } else {
                     this.message = "Permission denied"
                 }
