@@ -7,6 +7,7 @@
   "scripts": {
     "android": "uno build android --run",
     "ios-sim": "uno build ios-sim --run",
+    "ios": "uno build ios --debug",
     "clean": "uno clean"
   }
 }
