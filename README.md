@@ -8,4 +8,4 @@ $ npm run android
 $ npm run ios
 ```
 
-* TypeScript definitions: [`ContactsModule.ts`](ContactsModule.ts)
+* TypeScript definitions: [`ContactsModule.d.ts`](ContactsModule.d.ts)
