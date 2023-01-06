@@ -8,7 +8,6 @@ using Uno.Threading;
 partial class ContactsModule : NativeModule
 {
     static bool _inited;
-    Function _stringify;
 
     public ContactsModule()
     {
@@ -30,7 +29,7 @@ partial class ContactsModule : NativeModule
         AddMember(new NativeFunction("addContact", (context, args) => {
             if (args.Length > 0)
             {
-                var contact = Stringify(context, args[0]);
+                var contact = context.Stringify(args[0]);
 
                 if defined(ANDROID)
                     return AddContactJava(contact);
@@ -40,15 +39,6 @@ partial class ContactsModule : NativeModule
 
             return null;
         }));
-    }
-
-    string Stringify(Context context, object obj)
-    {
-        if (_stringify == null)
-            _stringify = (Function)context.Evaluate("(Context)", "JSON.stringify");
-
-        var json = _stringify.Call(context, obj);
-        return json.ToString();
     }
 
     Future<bool> RequestPermission(object[] args)

@@ -2,7 +2,7 @@
   "name": "fuse-contacts2",
   "private": true,
   "devDependencies": {
-    "fuse-sdk": "^2.5.0"
+    "fuse-sdk": "^2.6.0"
   },
   "scripts": {
     "android": "uno build android --run",
