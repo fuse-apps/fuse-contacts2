@@ -2,6 +2,7 @@
   "name": "fuse-contacts2",
   "private": true,
   "devDependencies": {
+    "@fuse-open/fuselibs": "https://ci.appveyor.com/api/buildjobs/0v3kehm2b7kb9oks/artifacts/fuse-open-fuselibs-2.6.0.tgz",
     "fuse-sdk": "^2.6.0"
   },
   "scripts": {
